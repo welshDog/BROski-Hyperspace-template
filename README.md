@@ -46,7 +46,7 @@ A comprehensive, **dyslexia-first social AI assistant** designed to make social 
 ### Prerequisites
 
 - **Node.js 18+**
-- **pnpm** package manager
+- **pnpm 8.6.12** package manager
 - **Git**
 
 ### Installation
@@ -54,7 +54,7 @@ A comprehensive, **dyslexia-first social AI assistant** designed to make social 
 1. **Clone the repository**
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/welshDog/My-Social-COMs-Buddy.git
    cd hyperspace
    ```
 
@@ -112,13 +112,13 @@ hyperspace/
 
 - **Next.js 15.5.2** - React framework with App Router
 - **React 19.1.1** - Latest React with concurrent features
-- **TypeScript 5.0+** - Type-safe development
+- **TypeScript 5.0.2** - Type-safe development
 
 ### Build & Development
 
 - **Turborepo 2.5.6** - High-performance monorepo build system
-- **pnpm** - Fast, disk-efficient package manager
-- **ESLint** - Code linting and formatting
+- **pnpm 8.6.12** - Fast, disk-efficient package manager
+- **ESLint 8.x** - Code linting and formatting
 - **Prettier 3.6.2** - Code formatting
 
 ### UI & Styling
@@ -126,6 +126,12 @@ hyperspace/
 - **Tailwind CSS 3.3.0** - Utility-first CSS framework
 - **Lucide React 0.542.0** - Beautiful icon library
 - **PostCSS 8.5.6** - CSS processing
+
+### Testing
+
+- **Jest 30.1.3** - JavaScript testing framework
+- **Testing Library** - React component testing utilities
+- **Babel 7.28.4** - JavaScript transpilation
 
 ### Accessibility
 
@@ -274,9 +280,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- **Issues**: [GitHub Issues](https://github.com/your-repo/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/your-repo/discussions)
-- **Documentation**: [Project Wiki](https://github.com/your-repo/wiki)
+- **Issues**: [GitHub Issues](https://github.com/welshDog/My-Social-COMs-Buddy/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/welshDog/My-Social-COMs-Buddy/discussions)
+- **Documentation**: [Project Wiki](https://github.com/welshDog/My-Social-COMs-Buddy/wiki)
 
 ---
 

@@ -34,7 +34,7 @@ If you discover a security vulnerability, please report it responsibly:
 ### 📧 Contact Information
 
 - **Email**: security@socialaiassistant.com (placeholder)
-- **GitHub Security Advisories**: [Report here](https://github.com/your-repo/security/advisories)
+- **GitHub Security Advisories**: [Report here](https://github.com/welshDog/My-Social-COMs-Buddy/security/advisories)
 
 ### 📋 What to Include
 

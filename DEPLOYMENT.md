@@ -18,7 +18,7 @@ This guide covers how to deploy the Social AI Assistant to various platforms and
 Before deploying, ensure you have:
 
 - **Node.js 18+** installed
-- **pnpm** package manager
+- **pnpm 8.6.12** package manager
 - **Git** repository
 - **Domain name** (for production deployments)
 
@@ -27,6 +27,10 @@ Before deploying, ensure you have:
 ### Development Server
 
 ```bash
+# Clone the repository
+git clone https://github.com/welshDog/My-Social-COMs-Buddy.git
+cd hyperspace
+
 # Install dependencies
 pnpm install
 

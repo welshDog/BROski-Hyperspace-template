@@ -24,6 +24,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - ESLint and Prettier code formatting
 - Turborepo build optimization
 - Security hardening with latest dependency versions
+- Jest testing framework with React 19 compatibility
+- Babel configuration for Jest and Next.js compatibility
+- System font stack for improved accessibility and performance
 
 ### Changed
 
@@ -31,6 +34,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated all dependencies to latest secure versions
 - Improved build performance with optimized webpack configuration
 - Enhanced accessibility features throughout the application
+- Replaced Google Fonts with system font stack for better performance
+- Updated Lucide React to version 0.542.0
+- Aligned all packages to use React 19 types consistently
 
 ### Fixed
 
@@ -38,6 +44,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Fixed TypeScript compilation errors
 - Corrected client component configuration for Next.js App Router
 - Resolved dependency conflicts and peer dependency warnings
+- Fixed Jest globals import issue (jest is globally available)
+- Resolved Babel/SWC conflict with next/font by using system fonts
+- Fixed React version conflicts across monorepo packages
 
 ### Security
 

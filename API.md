@@ -1,48 +1,53 @@
 # API Documentation
 
-This document describes the API endpoints and data structures used by the Social AI Assistant.
+This document describes the API architecture and planned endpoints for the Social AI Assistant.
 
 ## 📋 Table of Contents
 
 - [Overview](#overview)
-- [Authentication](#authentication)
-- [Endpoints](#endpoints)
+- [Current Status](#current-status)
+- [Architecture](#architecture)
+- [Planned Endpoints](#planned-endpoints)
 - [Data Models](#data-models)
-- [Error Handling](#error-handling)
-- [Rate Limiting](#rate-limiting)
+- [Development Roadmap](#development-roadmap)
 
 ## 📖 Overview
 
-The Social AI Assistant API provides endpoints for:
+The Social AI Assistant is currently a **frontend-only application** built with Next.js and React. The API documentation describes the planned backend architecture for future cloud features.
 
-- Social media content management
-- AI-powered content suggestions
-- User preferences and settings
-- Analytics and reporting
+### Current Architecture
 
-### Base URL
+- **Frontend**: Next.js 15.5.2 with React 19.1.1
+- **State Management**: React Context (local)
+- **Data Storage**: Browser localStorage (planned: IndexedDB)
+- **AI Features**: Client-side processing with Web APIs
 
-```
-https://api.socialaiassistant.com/v1
-```
+### Future Architecture (Planned)
 
-### Content Type
+- **Backend**: Hono API worker (planned in `apps/worker/`)
+- **Database**: PostgreSQL with Prisma ORM
+- **Authentication**: JWT tokens
+- **AI Processing**: OpenAI API integration
+- **Real-time**: WebSocket connections
 
-All requests should use JSON content type:
+## � Current Status
 
-```
-Content-Type: application/json
-```
+### ✅ Implemented Features
 
-## 🔐 Authentication
+- Dyslexia-friendly UI components
+- Text-to-speech functionality (Web Speech API)
+- Priority-based content organization
+- AI-powered content suggestions (client-side)
+- Voice command integration
+- Responsive design with Tailwind CSS
 
-Currently, the API does not require authentication as it's designed for local use. Future versions may include authentication for cloud features.
+### 🚧 Planned Features
 
-### Future Authentication (Planned)
-
-```http
-Authorization: Bearer <token>
-```
+- Real social media API integrations
+- User authentication and profiles
+- Cloud data synchronization
+- Advanced AI content generation
+- Analytics and reporting dashboard
 
 ## 🌐 Endpoints
 

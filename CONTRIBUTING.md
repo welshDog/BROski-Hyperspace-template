@@ -8,9 +8,15 @@ Thank you for your interest in contributing to the Social AI Assistant! This doc
 
 Follow the [Quick Start guide](../README.md#quick-start) in the main README to set up your development environment.
 
+### Prerequisites
+
+- **Node.js 18+**
+- **pnpm 8.6.12** package manager
+- **Git**
+
 ### 2. Finding Issues to Work On
 
-- Check the [Issues](https://github.com/your-repo/issues) page for open tasks
+- Check the [Issues](https://github.com/welshDog/My-Social-COMs-Buddy/issues) page for open tasks
 - Look for issues labeled `good first issue` or `help wanted`
 - Comment on issues you'd like to work on to avoid duplicate work
 
@@ -36,6 +42,9 @@ Follow the [Quick Start guide](../README.md#quick-start) in the main README to s
 
    # Run type checking
    cd apps/web && pnpm type-check
+
+   # Run tests
+   cd apps/web && pnpm test
 
    # Build the project
    pnpm build
