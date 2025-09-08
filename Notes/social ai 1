@@ -1,0 +1,178 @@
+### Social AI communication helper for dyslexia-first flow
+
+Love this. Let’s build you an ultra assistant that reads, drafts, summarizes, and acts across email and socials—fast, friendly, and dyslexia-first.
+
+---
+
+## Vision and outcomes
+
+- **Primary outcome:** Reduce overwhelm and decision fatigue. You see the gist first, act with one click, and never lose a thread.
+- **Modes:** 
+  - **Triage:** Summaries + priority labels + suggested replies.
+  - **Compose:** Voice-to-draft + tone shift + auto-proof.
+  - **Do:** One-click actions (send, schedule, post, DM, follow-up).
+- **Guardrails:** Privacy-safe storage, clear undo, transparent logs.
+
+---
+
+## Core features for dyslexia-first design
+
+- **Readable UI:** 
+  - **Font & spacing:** OpenDyslexic/Inter, 1.6–1.8 line spacing, 16–18px base, 80–90 character line width.
+  - **Chunking:** Collapsible sections; short paragraphs; bullet-first.
+  - **Iconography:** Big, consistent icons for actions (Reply, Save, Post, Schedule).
+- **Assistive layer:**
+  - **Audio:** Read-aloud for any message with adjustable speed.
+  - **Gist-first:** 1–3 sentence summary + sentiment + urgency badge.
+  - **Color coding:** Calm palette; consistent priority tags only (e.g., Today, This week, Waiting).
+  - **Smart templates:** Pre-approved reply blocks; tone toggles (Warm, Direct, Professional).
+- **Executive support:**
+  - **Follow-up memory:** Auto-create reminders when you mark “waiting on them.”
+  - **Calendar link:** Extract dates; propose times; insert calendar links.
+  - **Anti-overwhelm:** “Hide noise” filter; batch windows; daily recap.
+
+---
+
+## System architecture and stack choices
+
+| Layer | Option A: No-code fast build | Option B: Code + APIs | When to pick |
+|---|---|---|---|
+| Ingestion | Native connectors for Gmail/Outlook, X, LinkedIn, IG, FB, Discord | Provider APIs + webhooks (Node/Python) | A for speed, B for control |
+| Brain | Hosted LLM with function calling, safety filters | Self-hosted orchestration (LangChain/LlamaIndex style) | A if timelines are tight |
+| Actions | Prebuilt actions for send/post/schedule | Custom action handlers with queues | B for custom rules at scale |
+| UI | Web app with UI toolkit (React/Vite/Next) | Same, but fully bespoke components | A for MVP this week |
+| Storage | Secure hosted DB/tables + secrets vault | Postgres/SQLite + Redis + secret manager | B if you need complex data |
+
+> Direct answer: We can ship MVP in a week with Option A, then harden with Option B in week 2–3.
+
+---
+
+## Automations across email and social platforms
+
+#### Email (Gmail/Outlook 365)
+- **Triage:**
+  - **Summarize thread:** Gist, ask, deadline, files.
+  - **Classify:** Priority (Today/Week/Someday), sentiment, topic.
+  - **Suggest replies:** 3 options; “Short,” “Warm,” “Direct.”
+- **Compose:**
+  - **Voice-to-draft:** Turn your speech into structured email.
+  - **Tone shift + proof:** Dyslexia-friendly grammar assist; highlight confusing phrasing.
+- **Follow-up:**
+  - **Auto reminders:** If no reply in X days, propose bump with summary.
+  - **Calendar:** Detect dates; insert booking link; confirm time.
+
+#### X (Twitter)
+- **Inbox:**
+  - **Summarize DMs/mentions:** Priority and intent.
+  - **Reply suggestions:** Match your brand voice; threaded context.
+- **Posting:**
+  - **Draft from bullet points or voice.**
+  - **Schedule in batches:** Best-time slots; auto-rewrite variants.
+- **Safety:** Flag risky phrasing; confirm before hot replies.
+
+#### LinkedIn
+- **Network requests:** Summarize profile; suggest accept + opener.
+- **Comments:** Generate value-add comment; avoid clichés.
+- **DM follow-ups:** 3-touch cadence with calendar link.
+
+#### Instagram
+- **DM triage:** Identify collabs vs. fans vs. spam.
+- **Caption helper:** Hook + value + CTA + hashtags.
+- **Story replies:** Quick reactions + saved snippets.
+
+#### Facebook Page/Groups
+- **Comment moderation:** Summaries + sentiment flags.
+- **Post repurposing:** Turn long posts into short reels captions.
+
+#### Discord
+- **Mod inbox:** Summarize threads; suggested announcements.
+- **Snippets:** Saved answers; embed rules; schedule events.
+
+---
+
+## Launch plan and milestones
+
+1. **Day 1–2: MVP triage brain**
+   - **Email + X intake:** Fetch latest 50 items per channel.
+   - **Summarizer + classifier:** Gist, ask, urgency, tone; tag with 3 labels max.
+   - **UI v1:** Three panes—Inbox, Gist, Actions. Read-aloud button. Big Reply/Post buttons.
+2. **Day 3–4: Compose + follow-ups**
+   - **Voice-to-draft; tone toggles; grammar assist.**
+   - **Follow-up rules:** “Waiting on” → reminder in 3 days; generate bump draft.
+3. **Day 5–6: Social rollout**
+   - **LinkedIn + IG DMs:** Triage + reply suggestions.
+   - **Scheduler:** Queue posts; show best-time windows; variant generator.
+4. **Day 7: Polish**
+   - **Accessibility pass:** Fonts, spacing, colors, keyboard nav.
+   - **Privacy & logs:** Action history, undo, and clear explanations.
+
+---
+
+## Starter assets you can plug in today
+
+#### Priority labels and definitions
+- **Today:** Needs reply or action within 24 hours.
+- **This week:** Important but not urgent.
+- **Waiting:** You replied; waiting on them.
+- **FYI:** No action; archive soon.
+- **Hold:** Needs info before action.
+
+#### Reply templates (short, editable)
+
+- **Warm professional**
+  ```
+  Thanks for reaching out—really appreciate the detail. 
+  Quick gist I’m tracking: {{gist}}.
+  Here’s what I propose: {{proposal}}.
+  If that works, I can: {{next_step}}. 
+  Best, Lyndon
+  ```
+
+- **Direct decision**
+  ```
+  Quick decision: {{decision}}.
+  Reason: {{reason}}.
+  Next step: {{next_step}} by {{date}}.
+  ```
+
+- **Gentle bump**
+  ```
+  Friendly nudge on the note below. 
+  Still keen to move this forward. 
+  Is {{option_a}} or {{option_b}} better for you?
+  ```
+
+- **Social comment (value-add)**
+  ```
+  Love this angle. Two adds:
+  1) {{insight_1}}
+  2) {{insight_2}}
+  Curious how you see this applying to {{context}}.
+  ```
+
+#### Voice-to-draft prompt pattern
+```
+You are my dyslexia-first comms co-pilot.
+Input: bullet notes or voice transcript.
+Output: 3 subject lines, a 120–180 word email in Warm tone, and 1-sentence TL;DR.
+Respect these constraints: short paragraphs, line spacing, no jargon, clear ask with date.
+```
+
+#### Safety and clarity checks
+- **Confusion scanner:** Flag long sentences > 24 words; propose splits.
+- **Ambiguity:** Highlight vague asks; suggest 1 clear question.
+- **Tone risk:** Alert on sarcasm/risk; propose calmer rewrite.
+
+---
+
+### What I need from you to wire it up
+
+- **Accounts:** Which email (Gmail/Outlook) and which socials (X, LinkedIn, IG, FB, Discord) for v1?
+- **Voice:** 3 sample emails and 3 social posts you love; 3 you don’t.
+- **Follow-up rules:** Default wait time (3, 5, or 7 days) and time window for batching.
+- **Brand phrases:** Words you always use/avoid. Any signatures or links to include.
+
+If you want, I’ll package this as a repo template (README, workflows, JSON config for rules, and UI mock) so you can deploy and iterate fast.
+
+https://help.zapier.com/hc/en-us/categories/24393360264205-Agents
+

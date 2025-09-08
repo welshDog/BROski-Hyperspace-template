@@ -1,0 +1,439 @@
+# Dyslexia‑First Social AI Assistant — MVP Repo Template
+
+A production‑ready starter you can clone, plug your keys into, and ship. Designed for **triage → compose → do** with a dyslexia‑first UI.
+
+---
+
+## 🧱 Monorepo layout
+
+```
+/social-ai-assistant
+├─ apps/
+│  ├─ web/                 # Next.js (App Router), Tailwind, shadcn/ui, lucide
+│  └─ worker/              # Cloud Functions/Workers (Hono) for provider webhooks + actions
+├─ packages/
+│  ├─ brain/               # LLM orchestration (prompt schemas, tools, safety checks)
+│  ├─ adapters/            # Gmail, Outlook, X, LinkedIn, IG, FB, Discord connectors
+│  ├─ rules/               # Priority rules, follow-up automation, templates (JSON)
+│  └─ ui-dyslexia/         # Shared UI primitives: fonts, spacing, chunking, TTS
+├─ .github/workflows/      # CI, type-check, lint, e2e smoke
+├─ turbo.json              # Turborepo cache
+├─ package.json            # Workspaces
+└─ README.md
+```
+
+---
+
+## 🚀 Quickstart
+
+1. **Clone & install**
+
+```bash
+pnpm i
+pnpm --filter @app/web dev
+```
+
+2. **Create `.env` files** (see examples below) and paste provider keys.
+3. **Run web & worker locally**
+
+```bash
+pnpm dev          # runs web on 3000, worker on 8787
+```
+
+4. **Open** [http://localhost:3000](http://localhost:3000) — sign in, connect accounts, start triaging.
+
+> Ship fast: deploy web to **Vercel** and worker to **Cloudflare Workers** (or Fly/Render). CI is prewired.
+
+---
+
+## 🔐 Environment (.env examples)
+
+```ini
+# shared
+OPENAI_API_KEY=
+ANTHROPIC_API_KEY=
+# STT/TTS (pick at least one)
+OPENAI_SPEECH_KEY=
+ELEVENLABS_API_KEY=
+AZURE_SPEECH_KEY=
+
+# Gmail / Google
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+GOOGLE_REDIRECT_URI=
+GOOGLE_PROJECT_ID=
+
+# Outlook / Microsoft
+MS_CLIENT_ID=
+MS_CLIENT_SECRET=
+MS_TENANT_ID=
+
+# Socials
+TWITTER_BEARER_TOKEN=
+TWITTER_CLIENT_ID=
+TWITTER_CLIENT_SECRET=
+LINKEDIN_CLIENT_ID=
+LINKEDIN_CLIENT_SECRET=
+IG_APP_ID=
+IG_APP_SECRET=
+FB_APP_ID=
+FB_APP_SECRET=
+DISCORD_BOT_TOKEN=
+DISCORD_PUBLIC_KEY=
+
+# Storage
+DATABASE_URL=postgres://...
+REDIS_URL=redis://...
+NEXTAUTH_SECRET=
+NEXTAUTH_URL=http://localhost:3000
+```
+
+---
+
+## 🖥️ UI (dyslexia‑first)
+
+* **Fonts:** Inter + OpenDyslexic loaded, base **18px**, **1.7 line height**, **80–90ch** width.
+* **Chunking:** Collapsible sections, bullet‑first, short paragraphs.
+* **Icons:** lucide-react (reply, schedule, save, post). Big, consistent.
+* **Assistive:** Built‑in **Read Aloud** (Web Speech API) + **Gist‑first** banners.
+
+### Key Screens
+
+**Inbox / Gist / Action (3‑pane)**
+
+* Left: unified inbox with priority chips (Today, Week, Waiting, FYI, Hold).
+* Middle: gist card (1–3 sentences + sentiment + urgency).
+* Right: suggested replies (Short/Warm/Direct), one‑click actions.
+
+**Composer**
+
+* Voice‑to‑draft, tone toggles, auto‑proof (confusion & ambiguity checks), TL;DR.
+
+---
+
+## 🧩 Web (Next.js)
+
+**apps/web/app/page.tsx (excerpt)**
+
+```tsx
+'use client';
+import { useEffect, useMemo, useState } from 'react';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Mic, Send, Clock, Save, Reply, Volume2 } from "lucide-react";
+import { ReadAloud } from "@ui-dyslexia/read-aloud";
+import { PriorityChip } from "@ui-dyslexia/priority-chip";
+import { useInbox } from "@/lib/useInbox";
+import { DraftBox } from "@/components/DraftBox";
+import { Gist } from "@/components/Gist";
+
+export default function Home() {
+  const { items, select, selected } = useInbox();
+  return (
+    <div className="grid grid-cols-12 gap-4 p-4 max-w-[90ch] mx-auto">
+      {/* Inbox */}
+      <section className="col-span-3 space-y-2">
+        {items.map(m => (
+          <Card key={m.id} className="rounded-2xl">
+            <CardContent className="p-3 space-y-2">
+              <div className="flex items-center justify-between">
+                <PriorityChip value={m.priority} />
+                <span className="text-xs opacity-70">{m.source}</span>
+              </div>
+              <button onClick={() => select(m.id)} className="text-left leading-7">
+                <p className="font-semibold">{m.title}</p>
+                <p className="text-sm opacity-80 line-clamp-2">{m.preview}</p>
+              </button>
+            </CardContent>
+          </Card>
+        ))}
+      </section>
+
+      {/* Gist */}
+      <section className="col-span-5 space-y-3">
+        {selected && (
+          <Card className="rounded-2xl">
+            <CardHeader>
+              <CardTitle className="text-xl">Gist</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-3 leading-7">
+              <Gist item={selected} />
+              <ReadAloud text={selected.fullText} className="mt-2" />
+            </CardContent>
+          </Card>
+        )}
+      </section>
+
+      {/* Actions */}
+      <section className="col-span-4 space-y-3">
+        <Card className="rounded-2xl">
+          <CardHeader>
+            <CardTitle>Suggested replies</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-2">
+            <DraftBox modes={["Short", "Warm", "Direct"]} />
+            <div className="flex gap-2">
+              <Button><Reply className="w-4 h-4 mr-1"/>Reply</Button>
+              <Button variant="secondary"><Clock className="w-4 h-4 mr-1"/>Schedule</Button>
+              <Button variant="outline"><Save className="w-4 h-4 mr-1"/>Save</Button>
+              <Button><Send className="w-4 h-4 mr-1"/>Send</Button>
+            </div>
+          </CardContent>
+        </Card>
+      </section>
+    </div>
+  );
+}
+```
+
+**TTS / Read‑aloud primitive**
+
+```tsx
+// packages/ui-dyslexia/read-aloud.tsx
+'use client';
+import { useEffect, useRef, useState } from 'react';
+import { Button } from "@/components/ui/button";
+import { Volume2, Square } from "lucide-react";
+
+export function ReadAloud({ text, className }: { text: string; className?: string }) {
+  const [speaking, setSpeaking] = useState(false);
+  const utterance = useRef<SpeechSynthesisUtterance | null>(null);
+
+  useEffect(() => {
+    utterance.current = new SpeechSynthesisUtterance(text);
+    utterance.current.rate = 1.05; // adjustable
+    utterance.current.onend = () => setSpeaking(false);
+    return () => window.speechSynthesis.cancel();
+  }, [text]);
+
+  return (
+    <div className={className}>
+      {!speaking ? (
+        <Button onClick={() => { if (utterance.current){ setSpeaking(true); window.speechSynthesis.speak(utterance.current); } }}>
+          <Volume2 className="w-4 h-4 mr-2"/> Read aloud
+        </Button>
+      ) : (
+        <Button variant="destructive" onClick={() => { window.speechSynthesis.cancel(); setSpeaking(false); }}>
+          <Square className="w-4 h-4 mr-2"/> Stop
+        </Button>
+      )}
+    </div>
+  );
+}
+```
+
+---
+
+## 🔌 Provider adapters (packages/adapters)
+
+Each adapter exposes the same interface:
+
+```ts
+export type UnifiedItem = {
+  id: string; source: 'gmail'|'outlook'|'twitter'|'linkedin'|'instagram'|'facebook'|'discord';
+  title: string; preview: string; fullText: string; attachments?: string[];
+  from?: string; to?: string[]; date: string;
+};
+export interface Provider {
+  listLatest(limit: number): Promise<UnifiedItem[]>;
+  getThread(id: string): Promise<UnifiedItem[]>;
+  send(args: {threadId?: string; text: string; scheduleAt?: string}): Promise<{ok: boolean}>;
+}
+```
+
+Add concrete implementations: `gmail.ts`, `outlook.ts`, `twitter.ts`, `linkedin.ts`, `instagram.ts`, `facebook.ts`, `discord.ts` using REST/Graph APIs + webhooks. All normalized to `UnifiedItem`.
+
+---
+
+## 🧠 Brain (packages/brain)
+
+**Capabilities**
+
+* `summarizeThread` → gist + ask + urgency + sentiment + files
+* `classifyPriority` → Today / This week / Waiting / FYI / Hold
+* `suggestReplies` → Short / Warm / Direct (brand-voice tuned)
+* `confusionScan` → flags long sentences > 24 words; proposes splits
+* `ambiguityScan` → flags missing asks; suggests one clear question
+* `toneRisk` → sarcasm/heat alerts; calmer rewrites
+
+**Schemas**
+
+```ts
+export type Gist = { summary: string; ask?: string; deadline?: string; sentiment: 'pos'|'neu'|'neg'; urgency: 'low'|'med'|'high' };
+export type Suggestion = { mode: 'Short'|'Warm'|'Direct'; text: string };
+```
+
+**Implementation (LLM‑tool pattern)**
+
+```ts
+import { z } from 'zod';
+import { llm } from './llm';
+
+export async function triage(input: { thread: string }) {
+  const sys = `You are a dyslexia-first triage copilot. Output JSON. Keep summaries 1–3 sentences.`;
+  const schema = z.object({
+    gist: z.object({ summary: z.string(), ask: z.string().optional(), deadline: z.string().optional(), sentiment: z.enum(['pos','neu','neg']), urgency: z.enum(['low','med','high']) }),
+    priority: z.enum(['Today','This week','Waiting','FYI','Hold']),
+    suggestions: z.array(z.object({ mode: z.enum(['Short','Warm','Direct']), text: z.string() })).length(3)
+  });
+  return llm.callJSON({ system: sys, user: input.thread, schema });
+}
+```
+
+---
+
+## 🤖 Worker (apps/worker)
+
+* **Framework:** Hono (small, fast). Deploy as Cloudflare Worker.
+* **Routes:**
+
+```
+POST /webhook/gmail      # push notifications → queue fetch
+POST /webhook/outlook
+POST /webhook/twitter
+...
+POST /action/send        # send/post/schedule unified endpoint
+POST /action/followup    # create reminder, queue bump draft
+GET  /items              # unified inbox (latest 50)
+GET  /thread/:id
+```
+
+* **Queues:** use Durable Objects/Queues (or Redis) for follow‑ups and scheduled sends.
+
+**Example action route**
+
+```ts
+app.post('/action/send', async (c) => {
+  const { source, threadId, text, scheduleAt } = await c.req.json();
+  const provider = getProvider(source);
+  const res = await provider.send({ threadId, text, scheduleAt });
+  return c.json(res);
+});
+```
+
+---
+
+## 🧰 Rules & Templates (packages/rules)
+
+**priority.json**
+
+```json
+{
+  "labels": ["Today","This week","Waiting","FYI","Hold"],
+  "definitions": {
+    "Today": "Needs reply or action within 24 hours",
+    "This week": "Important but not urgent",
+    "Waiting": "You replied; waiting on them",
+    "FYI": "No action; archive soon",
+    "Hold": "Needs info before action"
+  }
+}
+```
+
+**followup.json**
+
+```json
+{ "defaultDays": 3, "batchWindows": ["09:30-10:30","14:00-15:00"], "timeZone": "Europe/London" }
+```
+
+**brand.json**
+
+```json
+{ "signature": "Best, Lyndon", "alwaysUse": ["BROski"], "avoid": ["synergy","utilize"] }
+```
+
+**templates.json**
+
+```json
+{
+  "warmProfessional": "Thanks for reaching out—really appreciate the detail. Quick gist I’m tracking: {{gist}}. Here’s what I propose: {{proposal}}. If that works, I can: {{next_step}}. Best, Lyndon",
+  "directDecision": "Quick decision: {{decision}}. Reason: {{reason}}. Next step: {{next_step}} by {{date}}.",
+  "gentleBump": "Friendly nudge on the note below. Still keen to move this forward. Is {{option_a}} or {{option_b}} better for you?",
+  "socialValueAdd": "Love this angle. Two adds: 1) {{insight_1}} 2) {{insight_2}} Curious how you see this applying to {{context}}."
+}
+```
+
+---
+
+## 🛡️ Safety & Privacy
+
+* **Local redact** PII before sending to LLM (emails, phone numbers, addresses) with reversible placeholders.
+* **Transparent logs**: every action recorded with `who/what/when/why` + easy **Undo**.
+* **Least privilege**: OAuth scopes minimal; store tokens encrypted; rotate regularly.
+
+---
+
+## 🧪 CI
+
+* **Checks:** typecheck, lint, unit tests for adapters, e2e smoke (load inbox, draft reply, no throw).
+* **GitHub Action** sample
+
+```yaml
+name: ci
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with: { version: 9 }
+      - run: pnpm i
+      - run: pnpm -r build
+      - run: pnpm -r test
+```
+
+---
+
+## 🗓️ Roadmap (MVP → Week 2)
+
+* **MVP (this week):** Gmail + X intake, Triage brain, 3‑pane UI, Read‑aloud, Suggested replies, Follow‑up rules, Scheduler.
+* **Week 2:** LinkedIn + IG DMs, Confusion/Ambiguity/Tone checks surfaced in composer, Best‑time posting windows, Undo log UI, Privacy dashboard.
+
+---
+
+## 🔧 Plug‑points for your prefs
+
+* **Accounts to enable by default:** set in `apps/web/app/config.json`.
+* **Voice:** drop 3 sample emails + 3 posts into `packages/brain/voice-seed/` to fine‑tune tone.
+* **Follow‑up rules:** edit `packages/rules/followup.json` (3/5/7 days, batch windows).
+* **Brand phrases & signature:** edit `packages/rules/brand.json`.
+
+---
+
+## 📦 One‑click deploy (optional)
+
+* Vercel (web) + Cloudflare (worker) templates included in `/deploy/` with README.
+
+---
+
+## 🧩 Bonus: Voice‑to‑Draft prompt (saved)
+
+```
+You are my dyslexia-first comms co-pilot.
+Input: bullet notes or voice transcript.
+Output: 3 subject lines, a 120–180 word email in Warm tone, and 1-sentence TL;DR.
+Respect these constraints: short paragraphs, line spacing, no jargon, clear ask with date.
+```
+
+---
+
+## ✅ Definition of Done (MVP)
+
+* Connect Gmail + X, ingest 50 latest each.
+* Triage produces gist + priority + 3 suggestions in <2s for cached threads.
+* Read‑aloud works on any message.
+* One‑click **Reply/Send/Schedule** functional on Gmail + X DM.
+* Follow‑up memory creates reminders when status = Waiting.
+* Daily recap page renders a batched summary.
+
+---
+
+## 📝 Next steps for you
+
+1. Tell me which **accounts** to enable for v1 (Gmail/Outlook, X, LinkedIn, IG, FB, Discord).
+2. Drop 3 **sample emails** and 3 **posts** you like (and 3 you don’t) to seed your voice.
+3. Pick **follow‑up** defaults: 3 / 5 / 7 days; set batch windows.
+4. Share **brand phrases** and signature to prefill `brand.json`.
+
+When you’re ready, I’ll export this scaffold as a real repo (with the files split out) so you can `git clone` and go.

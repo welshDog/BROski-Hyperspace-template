@@ -1,0 +1,13 @@
+{
+  "name": "@social-ai-assistant/ui-dyslexia",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "types": "index.ts",
+  "dependencies": {
+    "react": "^18",
+    "lucide-react": "^0.294.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18"
+  }
+}

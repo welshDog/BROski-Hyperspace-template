@@ -1,0 +1,29 @@
+
+> @social-ai-assistant/web@1.0.0 build C:\HYPERfocusZONE code\code zone\my Ai social helper\Hyperspace\apps\web
+> next build
+
+   ▲ Next.js 15.5.2
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 2.9s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/4) ...
+   Generating static pages (1/4) 
+   Generating static pages (2/4) 
+   Generating static pages (3/4) 
+ ✓ Generating static pages (4/4)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                 Size  First Load JS
+┌ ○ /                                    3.32 kB         105 kB
+└ ○ /_not-found                            991 B         103 kB
++ First Load JS shared by all             102 kB
+  ├ chunks/325-8880478e668b7d0f.js       45.5 kB
+  ├ chunks/caf83d8a-765b43e16c5e43a2.js  54.2 kB
+  └ other shared chunks (total)          1.96 kB
+
+
+○  (Static)  prerendered as static content
+
