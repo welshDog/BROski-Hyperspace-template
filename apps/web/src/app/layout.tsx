@@ -1,3 +1,4 @@
+import React from "react";
 import type { Metadata } from "next";
 import { ThemeProvider } from "@social-ai-assistant/ui-dyslexia";
 import "./globals.css";
