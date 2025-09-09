@@ -21,7 +21,7 @@ importers:
 
   apps/web:
     dependencies:
-      '@social-ai-assistant/ui-dyslexia':
+      '@dyslexia-first/ui-components':
         specifier: workspace:*
         version: link:../../packages/ui-dyslexia
       next:

@@ -1,7 +1,6 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
 import Home from '../app/page'
-import { ThemeProvider } from '@social-ai-assistant/ui-dyslexia'
 
 // Error boundary for React 19 compatibility
 class TestErrorBoundary extends React.Component<
@@ -33,13 +32,10 @@ describe('Home Page', () => {
     const renderWithProviders = (component: React.ReactElement) => {
         return render(
             <TestErrorBoundary>
-                <ThemeProvider>
-                    {component}
-                </ThemeProvider>
+                {component}
             </TestErrorBoundary>
         )
     }
-
     it('renders the main dashboard', () => {
         renderWithProviders(<Home />)
         expect(screen.getByText('Social AI Assistant')).toBeInTheDocument()
