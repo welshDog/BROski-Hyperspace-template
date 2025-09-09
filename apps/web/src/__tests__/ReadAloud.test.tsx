@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, screen, fireEvent } from '@testing-library/react'
-import { ReadAloud } from '@social-ai-assistant/ui-dyslexia'
+import { ReadAloud } from '@dyslexia-first/ui-components'
 
 describe('ReadAloud', () => {
     const mockText = 'Hello, this is a test text to read aloud.'
