@@ -1,6 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
-import { ThemeProvider } from "@dyslexia-first/ui-components";
+import { ThemeProvider } from "@dyslexia-first/ui-dyslexia";
 import "./globals.css";
 
 // Using system font stack for better accessibility and performance

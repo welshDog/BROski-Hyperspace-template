@@ -2,13 +2,51 @@
 
 A modern, **accessibility-first web application template** built with Next.js 15, React 19, and TypeScript. Designed specifically for users with dyslexia, featuring high-contrast themes, text-to-speech functionality, and inclusive design patterns.
 
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
-![Security](https://img.shields.io/badge/security-secure-brightgreen)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue)
-![Next.js](https://img.shields.io/badge/Next.js-15.5+-black)
-![React](https://img.shields.io/badge/React-19.1+-61dafb)
+## 📋 Repository Structure
 
-## ✨ Features
+This workspace is connected to **two GitHub repositories**:
+
+- **Template Repository**: [`dyslexia-Hyperspace-template`](https://github.com/welshDog/dyslexia-Hyperspace-template.git)
+  - Clean template with all tools and configurations
+  - Ready to be cloned for new projects
+  - Contains reusable components and setup
+
+- **Project Repository**: [`My-Social-COMs-Buddy`](https://github.com/welshDog/My-Social-COMs-Buddy.git)
+  - Specific application development
+  - Project-specific customizations
+  - Application-specific features
+
+## 🔄 Managing Both Repositories
+
+### Using the Management Scripts
+
+**Windows (PowerShell):**
+```powershell
+.\manage-repos.bat
+```
+
+**Unix/Linux/macOS:**
+```bash
+./manage-repos.sh
+```
+
+### Manual Commands
+
+```bash
+# Push to template repository (clean template)
+git push template main
+
+# Push to project repository (current development)
+git push origin main
+
+# Pull from template repository
+git pull template main
+
+# Pull from project repository
+git pull origin main
+```
+
+## 🚀 Quick Start
 
 ### 🎯 **Accessibility-First Design**
 
