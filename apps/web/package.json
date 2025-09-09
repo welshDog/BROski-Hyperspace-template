@@ -1,5 +1,5 @@
 {
-    "name": "@social-ai-assistant/web",
+    "name": "@dyslexia-first/web-template",
     "version": "1.0.0",
     "private": true,
     "license": "MIT",
@@ -14,7 +14,7 @@
         "test:coverage": "jest --coverage"
     },
     "dependencies": {
-        "@social-ai-assistant/ui-dyslexia": "workspace:*",
+        "@dyslexia-first/ui-components": "workspace:*",
         "next": "15.5.2",
         "react": "^19.1.1",
         "react-dom": "^19.1.1"

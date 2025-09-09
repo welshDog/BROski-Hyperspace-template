@@ -1,6 +1,6 @@
-# 🎯 Social AI Assistant
+# 🎯 Dyslexia-First Web App Template
 
-A comprehensive, **dyslexia-first social AI assistant** designed to make social media management accessible and intelligent for users with dyslexia. Built with modern web technologies and AI-powered features.
+A modern, **accessibility-first web application template** built with Next.js 15, React 19, and TypeScript. Designed specifically for users with dyslexia, featuring high-contrast themes, text-to-speech functionality, and inclusive design patterns.
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 ![Security](https://img.shields.io/badge/security-secure-brightgreen)
@@ -10,36 +10,65 @@ A comprehensive, **dyslexia-first social AI assistant** designed to make social 
 
 ## ✨ Features
 
-### 🎯 **Dyslexia-First Design**
+### 🎯 **Accessibility-First Design**
 
 - **High-contrast, readable fonts** with optimized spacing
 - **Text-to-speech functionality** for all content
 - **Simplified navigation** with clear visual hierarchy
-- **Priority-based content organization** (Today/Week/FYI)
-- **Voice command integration** for hands-free operation
+- **Dark/light theme support** with custom color schemes
+- **Keyboard navigation** and screen reader support
 
-### 🤖 **AI-Powered Features**
+### 🛠️ **Developer Experience**
 
-- **Smart Content Suggestions** - AI-generated content ideas based on context
-- **Real-time Content Analysis** - Automatic readability scoring and suggestions
-- **Intelligent Priority Detection** - Automatic content categorization
-- **Voice Commands** - Hands-free navigation and content creation
+- **Next.js 15.5.2** with App Router and latest features
+- **React 19.1.1** with concurrent features and optimizations
+- **TypeScript 5.0+** with strict type checking
+- **Tailwind CSS 3.3.0** for utility-first styling
+- **Jest testing** with React Testing Library
+- **ESLint + Prettier** for code quality
 
-### 📱 **Multi-Platform Support**
+### 🎨 **UI Component Library**
 
-- **Twitter/X** integration
-- **LinkedIn** professional networking
-- **Facebook** community engagement
-- **Instagram** visual content
-- **Discord** community management
+The `ui-dyslexia` package provides specialized components:
 
-### 🎨 **Modern UI/UX**
+- **Theme System** - Custom CSS variables for consistent theming
+- **Accessible Components** - Form inputs, buttons, navigation
+- **Text-to-Speech** - Web Speech API integration
+- **Priority System** - Color-coded priority indicators
+- **Responsive Design** - Mobile-first approach
 
-- **Responsive design** that works on all devices
-- **Dark/light theme support**
-- **Intuitive tabbed interface**
-- **Real-time statistics dashboard**
-- **Smooth animations and transitions**
+## 🚀 Quick Start
+
+### Prerequisites
+
+- **Node.js 18+**
+- **pnpm 8.6.12** package manager
+- **Git**
+
+### Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/welshDog/My-Social-COMs-Buddy.git
+   cd hyperspace
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   pnpm install
+   ```
+
+3. **Start development server**
+
+   ```bash
+   cd apps/web
+   pnpm dev
+   ```
+
+4. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## 🚀 Quick Start
 
@@ -79,28 +108,20 @@ A comprehensive, **dyslexia-first social AI assistant** designed to make social 
 ```
 hyperspace/
 ├── apps/
-│   ├── web/                    # Next.js web application
-│   │   ├── src/
-│   │   │   ├── app/           # App Router pages
-│   │   │   ├── components/    # Shared components
-│   │   │   └── styles/        # Global styles
-│   │   ├── public/            # Static assets
-│   │   └── package.json
-│   └── worker/                 # Hono API worker (planned)
+│   └── web/                    # Next.js web application
+│       ├── src/
+│       │   ├── app/           # App Router pages
+│       │   │   ├── globals.css # Custom CSS with theme variables
+│       │   │   ├── layout.tsx  # Root layout component
+│       │   │   └── page.tsx    # Main page (customize this)
+│       │   └── __tests__/      # Jest test files
+│       ├── public/            # Static assets
+│       └── package.json       # Web app dependencies
 ├── packages/
 │   └── ui-dyslexia/           # Reusable UI components
-│       ├── AccessibilityProvider.tsx
-│       ├── ComposeBox.tsx
-│       ├── ContentAnalyzer.tsx
-│       ├── DashboardStats.tsx
-│       ├── Navigation.tsx
-│       ├── PriorityChip.tsx
-│       ├── ReadAloud.tsx
-│       ├── SmartSuggestions.tsx
-│       ├── SocialPost.tsx
-│       ├── VoiceCommands.tsx
-│       └── index.ts
-├── Notes/                     # Project documentation
+│       ├── *.tsx              # Component files
+│       ├── index.ts           # Component exports
+│       └── package.json       # Component dependencies
 ├── turbo.json                # Turborepo configuration
 ├── pnpm-workspace.yaml       # Workspace configuration
 └── README.md
@@ -184,106 +205,35 @@ This project maintains **zero known security vulnerabilities**:
 - ✅ **Dependencies**: All packages updated to latest secure versions
 - ✅ **Audit**: Regular security audits with `pnpm audit`
 
-## 🎯 Component Library
+## � Component Library
 
-The `ui-dyslexia` package provides specialized components:
+The `ui-dyslexia` package provides **accessibility-first UI components** that you can use and extend:
 
 ### Core Components
 
 - **`<ReadAloud />`** - Text-to-speech functionality
 - **`<PriorityChip />`** - Color-coded priority indicators
-- **`<SocialPost />`** - Social media post display
-- **`<ComposeBox />`** - Rich text composition with AI suggestions
-- **`<DashboardStats />`** - Analytics and metrics display
-
-### AI Components
-
-- **`<SmartSuggestions />`** - AI-powered content suggestions
-- **`<ContentAnalyzer />`** - Real-time readability analysis
-- **`<VoiceCommands />`** - Voice-controlled navigation
+- **`<ThemeToggle />`** - Dark/light mode switcher
+- **`<Form />`** - Accessible form components
+- **`<Notification />`** - Toast notifications
 
 ### Layout Components
 
 - **`<Navigation />`** - Accessible navigation system
-- **`<AccessibilityProvider />`** - Global accessibility context
+- **`<DashboardStats />`** - Statistics display cards
+- **`<SocialPost />`** - Social media post display
 
-## 🤝 Contributing
+### Utility Components
 
-We welcome contributions! Please follow these guidelines:
+- **`<ComposeBox />`** - Rich text composition
+- **`<ContentAnalyzer />`** - Content analysis tools
+- **`<VoiceCommands />`** - Voice-controlled navigation
 
-### Development Setup
+### Theme System
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/your-feature`
-3. Make your changes
-4. Run tests: `pnpm lint && pnpm type-check`
-5. Commit your changes: `git commit -m 'Add your feature'`
-6. Push to the branch: `git push origin feature/your-feature`
-7. Submit a pull request
+- **CSS Custom Properties** for consistent theming
+- **Dark/Light Mode** support
+- **High Contrast** color schemes
+- **Dyslexia-Friendly** typography
 
-### Code Standards
-
-- **TypeScript**: Strict type checking enabled
-- **ESLint**: All linting rules must pass
-- **Prettier**: Code formatting enforced
-- **Accessibility**: WCAG 2.1 AA compliance required
-
-### Commit Convention
-
-We use conventional commits:
-
-- `feat:` New features
-- `fix:` Bug fixes
-- `docs:` Documentation updates
-- `style:` Code style changes
-- `refactor:` Code refactoring
-- `test:` Testing
-- `chore:` Maintenance
-
-## 📈 Roadmap
-
-### Phase 1 ✅ (Current)
-
-- [x] Core dyslexia-friendly UI components
-- [x] Text-to-speech functionality
-- [x] Priority-based content organization
-- [x] AI-powered content suggestions
-- [x] Voice command integration
-- [x] Multi-platform social media support
-
-### Phase 2 🔄 (Next)
-
-- [ ] Real social media API integrations
-- [ ] User authentication and profiles
-- [ ] Advanced AI content generation
-- [ ] Analytics and reporting dashboard
-- [ ] Mobile app development
-- [ ] Offline functionality
-
-### Phase 3 📋 (Future)
-
-- [ ] Multi-language support
-- [ ] Advanced accessibility features
-- [ ] Plugin system for custom integrations
-- [ ] Enterprise features
-- [ ] API for third-party integrations
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Built with ❤️ for the dyslexia community
-- Inspired by the need for accessible social media tools
-- Thanks to the open-source community for amazing tools and libraries
-
-## 📞 Support
-
-- **Issues**: [GitHub Issues](https://github.com/welshDog/My-Social-COMs-Buddy/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/welshDog/My-Social-COMs-Buddy/discussions)
-- **Documentation**: [Project Wiki](https://github.com/welshDog/My-Social-COMs-Buddy/wiki)
-
----
-
-**Made with ❤️ for accessibility and inclusion**
+All components are built with **accessibility in mind** and follow WCAG 2.1 AA guidelines.

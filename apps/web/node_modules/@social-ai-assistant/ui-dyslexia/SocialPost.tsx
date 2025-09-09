@@ -35,39 +35,38 @@ export function SocialPost({
   };
 
   return (
-    <div className="border rounded-lg p-4 mb-4 bg-white shadow-sm hover:shadow-md transition-shadow">
+    <div className="border rounded-lg p-4 mb-4 bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-shadow dark:border-gray-700">
       {/* Header */}
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center space-x-3">
           <div
             className={`w-3 h-3 rounded-full ${getPlatformColor(platform)}`}
           ></div>
-          <span className="font-semibold text-gray-800">{author}</span>
-          <span className="text-sm text-gray-500">{platform}</span>
+          <span className="font-semibold" style={{ color: 'var(--text-color)' }}>{author}</span>
+          <span className="text-sm" style={{ color: 'var(--muted-text)' }}>{platform}</span>
         </div>
         <div className="flex items-center space-x-2">
           {priority && (
             <span
-              className={`px-2 py-1 rounded text-xs text-white ${
-                priority === "Today"
+              className={`px-2 py-1 rounded text-xs text-white ${priority === "Today"
                   ? "bg-red-500"
                   : priority === "Week"
                     ? "bg-yellow-500"
                     : priority === "FYI"
                       ? "bg-green-500"
                       : "bg-gray-500"
-              }`}
+                }`}
             >
               {priority}
             </span>
           )}
-          <span className="text-sm text-gray-500">{timestamp}</span>
+          <span className="text-sm" style={{ color: 'var(--muted-text)' }}>{timestamp}</span>
         </div>
       </div>
 
       {/* Content */}
       <div className="mb-3">
-        <p className="text-gray-700 leading-relaxed">{content}</p>
+        <p className="leading-relaxed" style={{ color: 'var(--text-color)' }}>{content}</p>
       </div>
 
       {/* Actions */}
@@ -96,13 +95,15 @@ export function SocialPost({
         <div className="flex space-x-1">
           <button
             onClick={() => onAction?.("archive", id)}
-            className="px-2 py-1 text-xs text-gray-500 hover:text-gray-700"
+            className="px-2 py-1 text-xs hover:opacity-75 transition-opacity"
+            style={{ color: 'var(--muted-text)' }}
           >
             Archive
           </button>
           <button
             onClick={() => onAction?.("snooze", id)}
-            className="px-2 py-1 text-xs text-gray-500 hover:text-gray-700"
+            className="px-2 py-1 text-xs hover:opacity-75 transition-opacity"
+            style={{ color: 'var(--muted-text)' }}
           >
             Snooze
           </button>

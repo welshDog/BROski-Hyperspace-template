@@ -1,7 +1,8 @@
 {
-    "name": "social-ai-assistant",
+    "name": "dyslexia-first-web-template",
     "version": "1.0.0",
     "private": true,
+    "description": "A modern, accessibility-first web application template built with Next.js 15, React 19, and TypeScript",
     "license": "MIT",
     "workspaces": [
         "apps/*",

@@ -1,14 +1,14 @@
 import React from "react";
 import type { Metadata } from "next";
-import { ThemeProvider } from "@social-ai-assistant/ui-dyslexia";
+import { ThemeProvider } from "@dyslexia-first/ui-components";
 import "./globals.css";
 
 // Using system font stack for better accessibility and performance
 const fontClass = "font-sans";
 
 export const metadata: Metadata = {
-    title: "Social AI Assistant",
-    description: "Dyslexia-first social AI assistant",
+    title: "Dyslexia-First Web App",
+    description: "A modern web application built with accessibility in mind",
 };
 
 export default function RootLayout({

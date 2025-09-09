@@ -1,6 +1,7 @@
 {
-    "name": "@social-ai-assistant/ui-dyslexia",
+    "name": "@dyslexia-first/ui-components",
     "version": "1.0.0",
+    "description": "Accessibility-first UI components for dyslexia-friendly web applications",
     "license": "MIT",
     "main": "index.ts",
     "types": "index.ts",
