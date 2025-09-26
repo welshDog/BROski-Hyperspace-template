@@ -1,11 +1,24 @@
 
-> @social-ai-assistant/web@1.0.0 build C:\HYPERfocusZONE code\code zone\my Ai social helper\Hyperspace\apps\web
+> @dyslexia-first/web-template@1.0.0 build C:\Users\lyndz\Downloads\vs studio\BROski-Hyperspace-template\apps\web
 > next build
 
+ ⚠ The "experimental.esmExternals" option has been modified. experimental.esmExternals is not recommended to be modified as it may disrupt module resolution. It should be removed from your next.config.js.
    ▲ Next.js 15.5.2
+   - Experiments (use with caution):
+     · esmExternals: "loose"
 
    Creating an optimized production build ...
- ✓ Compiled successfully in 10.5s
+   Disabled SWC as replacement for Babel because of custom Babel configuration "babel.config.js" https://nextjs.org/docs/messages/swc-disabled
+   `compiler` options in `next.config.js` will be ignored while using Babel https://nextjs.org/docs/messages/ignored-compiler-options
+   Using external babel configuration from C:\Users\lyndz\Downloads\vs studio\BROski-Hyperspace-template\apps\web\babel.config.js
+[BABEL] Note: The code generator has deoptimised the styling of C:\Users\lyndz\Downloads\vs studio\BROski-Hyperspace-template\node_modules\.pnpm\next@15.5.2_@babel+core@7.28.4_react-dom@19.1.1_react@19.1.1\node_modules\next\dist\compiled\next-devtools\index.js as it exceeds the max of 500KB.
+   Disabled SWC as replacement for Babel because of custom Babel configuration "babel.config.js" https://nextjs.org/docs/messages/swc-disabled
+   `compiler` options in `next.config.js` will be ignored while using Babel https://nextjs.org/docs/messages/ignored-compiler-options
+   Disabled SWC as replacement for Babel because of custom Babel configuration "babel.config.js" https://nextjs.org/docs/messages/swc-disabled
+   `compiler` options in `next.config.js` will be ignored while using Babel https://nextjs.org/docs/messages/ignored-compiler-options
+   Using external babel configuration from C:\Users\lyndz\Downloads\vs studio\BROski-Hyperspace-template\apps\web\babel.config.js
+[BABEL] Note: The code generator has deoptimised the styling of C:\Users\lyndz\Downloads\vs studio\BROski-Hyperspace-template\node_modules\.pnpm\next@15.5.2_@babel+core@7.28.4_react-dom@19.1.1_react@19.1.1\node_modules\next\dist\compiled\next-devtools\index.js as it exceeds the max of 500KB.
+ ✓ Compiled successfully in 7.9min
    Linting and checking validity of types ...
    Collecting page data ...
    Generating static pages (0/4) ...
@@ -17,12 +30,13 @@
    Collecting build traces ...
 
 Route (app)                                 Size  First Load JS
-┌ ○ /                                    3.32 kB         105 kB
-└ ○ /_not-found                            991 B         103 kB
-+ First Load JS shared by all             102 kB
-  ├ chunks/325-8880478e668b7d0f.js       45.5 kB
-  ├ chunks/caf83d8a-765b43e16c5e43a2.js  54.2 kB
-  └ other shared chunks (total)          1.96 kB
+┌ ○ /                                      127 B         366 kB
+└ ○ /_not-found                           1.1 kB         367 kB
++ First Load JS shared by all             366 kB
+  ├ chunks/1d247c51-61e1d3f0a2e07a1b.js  54.2 kB
+  ├ chunks/525-76abb5e4cddea1e6.js       84.5 kB
+  ├ chunks/9b7115f0-0656a283172443de.js   225 kB
+  └ other shared chunks (total)          2.05 kB
 
 
 ○  (Static)  prerendered as static content
