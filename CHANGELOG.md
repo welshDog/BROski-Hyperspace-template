@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
+### 0 Added
 
 - Initial project setup with Turborepo monorepo structure
 - Next.js 15.5.2 web application with App Router
@@ -58,7 +58,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0] - 2025-09-08
 
-### Added
+### 2 Added
 
 - Project foundation with dyslexia-first design principles
 - Core component architecture

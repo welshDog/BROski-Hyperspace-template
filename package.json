@@ -23,9 +23,4 @@
         "react-dom": "^19.1.1"
     },
     "packageManager": "pnpm@8.6.12"
-    {
-  "perplexity.apiKey": "${env:PPLX_API_KEY}",
-  "perplexity.endpoint": "https://api.perplexity.ai/search"
-}
-
 }
